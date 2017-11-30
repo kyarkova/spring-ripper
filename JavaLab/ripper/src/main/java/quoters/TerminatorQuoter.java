@@ -1,6 +1,7 @@
 package quoters;
 
 import javax.annotation.PostConstruct;
+
 @Profiling
 @DeprecatedClass(newImpl = T1000.class)
 public class TerminatorQuoter implements Quoter {
@@ -13,6 +14,7 @@ public class TerminatorQuoter implements Quoter {
     public void setRepeat(int repeat) {
         this.repeat = repeat;
     }
+
     @PostConstruct
     public void init() {
         System.out.println("Phase 2");
