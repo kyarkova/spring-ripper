@@ -4,7 +4,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import javax.management.MBeanServer;
-import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.InvocationHandler;
@@ -18,8 +17,9 @@ public class ProfilingHandlerBeanPostProcessor implements BeanPostProcessor {
     private ProfilingController controller = new ProfilingController();
 
     public ProfilingHandlerBeanPostProcessor() throws Exception {
+        controller.setEnabled(true);
         MBeanServer platformMBeanServer = ManagementFactory.getPlatformMBeanServer();
-        platformMBeanServer.registerMBean(controller,new ObjectName("profiling","name","controller"));
+        platformMBeanServer.registerMBean(controller, new ObjectName("profiling", "name", "controller"));
     }
 
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
